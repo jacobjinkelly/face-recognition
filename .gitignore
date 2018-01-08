@@ -1,0 +1,7 @@
+# Directories #
+processed/
+uncropped/
+
+# OS Generated Files #
+.DS_Store
+*.pyc
