@@ -11,6 +11,10 @@ import os
 from scipy.ndimage import filters
 import urllib
 
+"""Modified from Prof. Michael Guerzhoy:
+http://www.cs.toronto.edu/~guerzhoy/321/proj1/get_data.py
+"""
+
 # act = list(set([a.split("\t")[0]
 #                             for a in open("subset_actors.txt").readlines()]))
 act = ['Gerard Butler', 'Daniel Radcliffe', 'Michael Vartan', 'Lorraine Bracco',
@@ -40,7 +44,7 @@ def timeout(func, args=(), kwargs={}, timeout_duration=1, default=None):
         return it.result
 
 testfile = urllib.URLopener()
-coords = open('coords.txt','w') # text file containing coordinates to crop by
+# coords = open('coords.txt','w') # text file containing coordinates to crop by
 
 # Note: you need to create the uncropped folder first in order for this to work
 
@@ -49,17 +53,19 @@ for a in act:
     i = 0
     for line in open("subset_actors.txt"):
         if a in line:
-            filename = last_name + str(i) + '.' + line.split()[4].split('.')[-1]
+            split_line = line.split()
+            id_= split_line[2]
+            file_extension = split_line[4].split('.')[-1]
+            filename = last_name + id_ + '.' + file_extension
             # A version without timeout (uncomment in case you need to
             # unsupress exceptions, which timeout() does)
             # testfile.retrieve(line.split()[4], "uncropped/"+filename)
 
             # timeout is used to stop downloading images taking too long
-            timeout(testfile.retrieve, (line.split()[4],
+            timeout(testfile.retrieve, (split_line[4],
                                             "uncropped/" + filename), {}, 30)
             if os.path.isfile("uncropped/" + filename):
-                coords.write(filename + ' ' + line.split()[5] + '\n')
-                print filename
-                i += 1
+                # coords.write(filename + ' ' + line.split()[5] + '\n')
+                print filename, split_line[5]
 
-coords.close()
+# coords.close()
