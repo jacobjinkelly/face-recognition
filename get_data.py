@@ -46,7 +46,6 @@ def timeout(func, args=(), kwargs={}, timeout_duration=1, default=None):
         return it.result
 
 testfile = urllib.URLopener()
-# coords = open('coords.txt','w') # text file containing coordinates to crop by
 
 # Note: you need to create the uncropped folder first in order for this to work
 
@@ -67,7 +66,4 @@ for a in act:
             timeout(testfile.retrieve, (split_line[4],
                                             "uncropped/" + filename), {}, 30)
             if os.path.isfile("uncropped/" + filename):
-                # coords.write(filename + ' ' + line.split()[5] + '\n')
                 print filename, split_line[5]
-
-# coords.close()
