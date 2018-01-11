@@ -11,9 +11,11 @@ import os
 from scipy.ndimage import filters
 import urllib
 
-"""Modified from Prof. Michael Guerzhoy:
+'''For scraping images.
+
+Modified from Prof. Michael Guerzhoy:
 http://www.cs.toronto.edu/~guerzhoy/321/proj1/get_data.py
-"""
+'''
 
 # act = list(set([a.split("\t")[0]
 #                             for a in open("subset_actors.txt").readlines()]))

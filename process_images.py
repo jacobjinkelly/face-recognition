@@ -5,6 +5,9 @@ from scipy.misc import imsave
 from rgb2gray import rgb2gray
 import os
 
+'''For processing scraped images.
+'''
+
 for line in open('test_subset_actors.txt'):
     split_line = line.split()
     last_name = split_line[1].lower()
